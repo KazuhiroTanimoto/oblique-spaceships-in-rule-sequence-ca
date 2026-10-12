@@ -1,0 +1,46 @@
+License scope
+=============
+
+Kazuhiro Tanimoto applies the following terms to the material in this
+archive to the extent that he holds the relevant rights.
+
+Implementation code: CC0 1.0 Universal
+-------------------------------------
+
+All JavaScript, Python and CSS implementation code, test code, HTML markup
+and executable code examples are dedicated to the public domain under
+CC0 1.0 Universal. This includes code in assets/, tests/ and
+rule_sequence_canonical.py.
+
+Full text: LICENSES/CC0-1.0.txt
+Official text: https://creativecommons.org/publicdomain/zero/1.0/legalcode.en
+
+Explanatory text and study data: CC BY 4.0
+----------------------------------------
+
+Copyright (c) 2026 Kazuhiro Tanimoto.
+
+The explanatory prose in README.md, rule_sequence_ca_notation.md and the
+HTML pages, the explanatory artwork in assets/rule-sequence.svg, and the
+study data in oblique_list.txt and the HTML list,
+including rules, sequences, initial structures and associated metadata,
+are licensed under the Creative Commons Attribution 4.0 International
+License (CC BY 4.0).
+
+HTML pages contain both categories: implementation markup is CC0;
+explanatory prose and recorded study data are CC BY 4.0. CA notation
+expressions are study data, not executable code examples.
+
+Full text: LICENSES/CC-BY-4.0.txt
+Official text: https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+When sharing material covered by CC BY 4.0, give appropriate credit to
+Kazuhiro Tanimoto, retain supplied notices, provide the source and license
+links, and indicate changes, as required by that license. The material is
+provided without warranties under the applicable legal text. See README.md
+for citation guidance; no particular academic citation format is imposed.
+
+These declarations do not claim rights over facts or material for which
+copyright or similar rights do not apply, and do not override separately
+identified third-party rights or notices. The official license texts in
+LICENSES/ retain their own terms.

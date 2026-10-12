@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oblique Spaceship Demo | Rule-Sequence Cellular Automata</title>
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+    <header>
+        <h1>Oblique Spaceship Demo</h1>
+        <nav aria-label="Archive documents">
+            <a href="index.html">Spaceship list</a>
+            <a href="rule_sequence_ca_notation.md">CA notation and normalization</a>
+        </nav>
+    </header>
+    <main>
+        <p>The supplied initial configuration runs on a torus. Edit the rules or sequence to explore its behavior. Reset restores an explicit pattern or generates a fresh random board at the specified density. The trajectory follows the circular centroid.</p>
+        <p>Single-rule cellular automata are also supported: define one rule and use <code>Seq 1</code> to apply it every generation, with either an explicit pattern or random initialization.</p>
+        <div id="minimal-oblique-demo"></div>
+    </main>
+    <footer>Text and study data: Copyright (c) 2026 Kazuhiro Tanimoto, CC BY 4.0. Code: CC0 1.0. <a href="LICENSE">License scope</a>.</footer>
+    <script src="assets/rule_switching_ca_core.js"></script>
+    <script src="assets/single_rule_oblique_spaceship_trail.js"></script>
+    <script src="assets/oblique_demo.js"></script>
+</body>
+</html>

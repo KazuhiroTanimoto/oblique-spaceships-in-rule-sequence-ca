@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use the study or spaceship collection, please cite this archive."
+type: dataset
+title: "Oblique Spaceships in Rule-Sequence Cellular Automata"
+authors:
+  - family-names: "Tanimoto"
+    given-names: "Kazuhiro"
+    website: "https://kazuhirotanimoto.com/"
+version: "1.0.0"
+url: "https://github.com/KazuhiroTanimoto/oblique-spaceships-in-rule-sequence-ca/releases/tag/v1.0.0"
+repository-code: "https://github.com/KazuhiroTanimoto/oblique-spaceships-in-rule-sequence-ca"
+abstract: "A collection of 4,798 oblique spaceship records from the October 12, 2026 study snapshot, with rule-sequence CA notation, normalization and browser demos. Code is CC0; explanatory text, diagrams and study data are CC BY 4.0."
+keywords:
+  - cellular automata
+  - oblique spaceships
+  - rule sequences
+  - rule switching
