@@ -33,7 +33,9 @@ Single-rule cellular automata are also supported: define one rule and use `Seq 1
 - [rule_sequence_canonical.py](rule_sequence_canonical.py) is the reference publication normalizer. It uses the Python standard library.
 - [oblique_list.txt](oblique_list.txt) contains one complete `Rules; Seq; Init` expression per line, in the original table order. It is UTF-8 text.
 
-The browser demos replay the supplied expressions. They support explicit `Init` patterns, run-length shorthand, bracketed numeric symbols, and both `Init Random 20%` and `Init Random(0.2)`. Random forms initialize only states 0 and 1 at the specified density, including 0% and 100%; Reset generates a fresh board at the same density while retaining edited rules, sequence and palette. Try the equivalent [20% random demo](oblique_demo.html?ca=B3%2FS23%2FC2%3B%20Seq%201%3B%20Init%20Random%2020%25) and [density-0.2 random demo](oblique_demo.html?ca=B3%2FS23%2FC2%3B%20Seq%201%3B%20Init%20Random%280.2%29).
+The browser demos replay the supplied expressions. They support explicit `Init` patterns with `0` for empty cells, bracketed numeric symbols, and both `Init Random 20%` and `Init Random(0.2)`. Random forms initialize only states 0 and 1 at the specified density, including 0% and 100%; Reset generates a fresh board at the same density while retaining edited rules, sequence and palette. Try the equivalent [20% random demo](oblique_demo.html?ca=B3%2FS23%2FC2%3B%20Seq%201%3B%20Init%20Random%2020%25) and [density-0.2 random demo](oblique_demo.html?ca=B3%2FS23%2FC2%3B%20Seq%201%3B%20Init%20Random%280.2%29).
+
+Each explicit cell is written separately; dot notation and repetition shorthand are not supported.
 
 The demos do not perform publication normalization. The normalizer operates on `Rules + Seq`; it does not minimize a particular pattern or modify `Init`.
 

@@ -258,7 +258,7 @@ Each row is written from left to right, and rows are listed from top to bottom.
 For the initial configuration:
 
 ```text
-.    = state 0
+0    = state 0
 1-9  = states 1-9
 A-Z  = states 10-35
 a-z  = states 36-61
@@ -267,18 +267,10 @@ a-z  = states 36-61
 Example:
 
 ```text
-Init .1../234./..5.
+Init 0100/2340/0050
 ```
 
 represents:
-
-```text
-. 1 . .
-2 3 4 .
-. . 5 .
-```
-
-or numerically:
 
 ```text
 0 1 0 0
@@ -289,7 +281,7 @@ or numerically:
 Another example:
 
 ```text
-Init .1A/aZz
+Init 01A/aZz
 ```
 
 represents:
@@ -365,49 +357,15 @@ The random density is independent of the canonical state-count calculation descr
 
 If strict reproducibility is required, an implementation may optionally support a random seed separately, but the seed is not part of the core `Init Random(...)` syntax.
 
-## 8. Optional run-length shorthand
+## 8. Explicit cell representation
 
-For larger or repetitive initial configurations, an optional shorthand may be used.
-
-The form is:
+Write one state symbol or bracketed integer per cell. Repeated cells are written individually:
 
 ```text
-<count>*<symbol>
+Init 000001/00111/0000000
 ```
 
-Examples:
-
-```text
-5*.
-```
-
-means:
-
-```text
-.....
-```
-
-and
-
-```text
-4*1
-```
-
-means:
-
-```text
-1111
-```
-
-Therefore:
-
-```text
-Init 5*.1/2*.3*1/7*.
-```
-
-is equivalent to expanding each repeated symbol explicitly.
-
-The uncompressed form remains the preferred form for small patterns because it is easier to read visually.
+State 0 is written as `0`. Dot notation and run-length shorthand are not supported.
 
 ---
 
@@ -426,7 +384,7 @@ If larger values are needed, bracket notation may be used:
 For example:
 
 ```text
-Init .1[62]/[127]..
+Init 01[62]/[127]00
 ```
 
 This allows arbitrary non-negative state numbers while preserving the one-character notation for common cases.
@@ -442,7 +400,7 @@ Seq 12[62][63]
 ## 10. Complete example
 
 ```text
-B34/S12/C3, B24/S1/C4, B3/S234/C5, B2/S0345/C6; Seq 1234; Init .1../234./..5.
+B34/S12/C3, B24/S1/C4, B3/S234/C5, B2/S0345/C6; Seq 1234; Init 0100/2340/0050
 ```
 
 This defines:
@@ -457,9 +415,9 @@ Sequence:
 1 → 2 → 3 → 4 → repeat
 
 Initial configuration:
-. 1 . .
-2 3 4 .
-. . 5 .
+0 1 0 0
+2 3 4 0
+0 0 5 0
 ```
 
 ---
@@ -754,7 +712,7 @@ A parser should interpret the notation in the following order:
 7. Parse `Init` either as an explicit cell-state grid or as a random binary initial condition.
 8. Accept `Init Random 20%` and `Init Random(0.2)` as equivalent density specifications.
 9. For random initialization, generate only states 0 and 1 according to the specified density.
-10. Expand optional run-length expressions such as `5*.` for explicit patterns.
+10. Read each explicit cell separately; use `0` for state 0 and reject dot notation and repetition shorthand.
 11. Treat uppercase and lowercase letters as distinct symbols.
 12. Expand bracketed integers such as `[62]` when present.
 13. Verify that every explicitly specified state used by `Init` lies within the canonical state range; otherwise reject the initial configuration as invalid.
@@ -764,11 +722,11 @@ Whitespace may be ignored around separators.
 For example, these are equivalent:
 
 ```text
-B34/S12/C3,B24/S1/C4;Seq 12;Init .1/12
+B34/S12/C3,B24/S1/C4;Seq 12;Init 01/12
 ```
 
 ```text
-B34/S12/C3, B24/S1/C4; Seq 12; Init .1/12
+B34/S12/C3, B24/S1/C4; Seq 12; Init 01/12
 ```
 
 ---
@@ -784,7 +742,7 @@ For publication and machine exchange, the recommended canonical form is:
 Example:
 
 ```text
-B34/S12/C3, B24/S1/C4, B3/S234/C5, B2/S0345/C6; Seq 1234; Init .1../234./..5.
+B34/S12/C3, B24/S1/C4, B3/S234/C5, B2/S0345/C6; Seq 1234; Init 0100/2340/0050
 ```
 
 A random initial condition may also be specified:
@@ -830,7 +788,7 @@ This makes the notation suitable for rule-switching cellular automata while rema
 
 The Python publication normalizer implements condition sorting, general cyclic C normalization, duplicate merging, unused-rule removal and first-use numbering. It does not process `Init`. Both the normalizer and the browser demos support single-rule systems expressed with one rule and `Seq 1`.
 
-The browser demos replay the supplied rules without automatic canonicalization. They implement explicit initial patterns, optional run-length shorthand, bracketed numeric identifiers and both random binary initial forms in Section 7.2. Random density may range from 0 to 1 inclusive (0% to 100%); only states 0 and 1 are generated. Reset creates a fresh random board at the specified density, or restores the recorded structure for an explicit pattern. Edited rules, sequence and palette are retained.
+The browser demos replay the supplied rules without automatic canonicalization. They implement explicit initial patterns with `0` for empty cells, bracketed numeric identifiers and both random binary initial forms in Section 7.2. Random density may range from 0 to 1 inclusive (0% to 100%); only states 0 and 1 are generated. Reset creates a fresh random board at the specified density, or restores the recorded structure for an explicit pattern. Edited rules, sequence and palette are retained.
 
 The demos do not validate the canonical state-range requirement in Section 11.6. Supplied numeric states are preserved until the next rule update, and both initialization modes use Float64 state storage. These distinctions describe the implemented subset and do not change the notation specification.
 

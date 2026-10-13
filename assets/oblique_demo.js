@@ -1,27 +1,26 @@
 (() => {
     'use strict';
 
-    const symbols = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const symbols = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
     function encodeSymbol(value) {
-        return value === 0 ? '.' : value <= 61 ? symbols[value - 1] : '[' + value + ']';
+        return value <= 61 ? symbols[value] : '[' + value + ']';
     }
 
-    function parseTokens(text, allowRuns = false, limit = Infinity) {
+    function parseTokens(text, limit = Infinity) {
         const values = [];
-        const token = allowRuns ? /(?:(\d+)\*)?(\[\d+\]|[.1-9A-Za-z])/y : /(\[\d+\]|[1-9A-Za-z])/y;
+        const token = /(\[\d+\]|[0-9A-Za-z])/y;
         let offset = 0;
         while (offset < text.length) {
             token.lastIndex = offset;
             const match = token.exec(text);
             if (!match) throw new Error('Invalid sequence or initial state symbol.');
-            const symbol = match[allowRuns ? 2 : 1];
-            const value = symbol[0] === '[' ? Number(symbol.slice(1, -1)) : symbol === '.' ? 0 : symbols.indexOf(symbol) + 1;
-            const count = allowRuns && match[1] ? Number(match[1]) : 1;
-            if (!Number.isSafeInteger(value) || !Number.isSafeInteger(count) || count < 1 || values.length + count > limit) {
+            const symbol = match[1];
+            const value = symbol[0] === '[' ? Number(symbol.slice(1, -1)) : symbols.indexOf(symbol);
+            if (!Number.isSafeInteger(value) || values.length >= limit) {
                 throw new Error('Invalid or oversized initial configuration.');
             }
-            for (let i = 0; i < count; i++) values.push(value);
+            values.push(value);
             offset = token.lastIndex;
         }
         if (!values.length) throw new Error('Empty sequence or initial row.');
@@ -53,7 +52,7 @@
                     throw new Error('Random density must be between 0 and 1 (0% to 100%).');
                 }
             } else {
-                const rows = initialSection[1].split('/').map(row => parseTokens(row.trim(), true, maxSize));
+                const rows = initialSection[1].split('/').map(row => parseTokens(row.trim(), maxSize));
                 if (rows.length > maxSize) throw new Error('Initial configuration exceeds the demo grid.');
                 pattern = [];
                 for (let y = 0; y < rows.length; y++) {

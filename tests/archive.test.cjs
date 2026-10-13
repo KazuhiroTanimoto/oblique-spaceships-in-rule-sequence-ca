@@ -20,6 +20,7 @@ test('every archived record matches its TXT expression and supplies a complete d
     links.forEach((link, index) => {
         assert.equal(link.pathname, '/oblique_demo.html');
         assert.equal(link.searchParams.get('ca'), lines[index]);
+        assert.doesNotMatch(lines[index].split('; Init ')[1], /[.*]/);
         for (const field of ['period', 'dx', 'dy', 'maxNonzero', 'gridSize']) {
             assert.ok(link.searchParams.has(field), `${index + 1}: ${field}`);
         }
@@ -30,6 +31,10 @@ test('every archived record matches its TXT expression and supplies a complete d
         assert.equal(Math.abs(design.displacement.dy), Number(rows[index][2]));
         assert.equal(Number(rows[index][3].match(/<td>(\d+)<\/td>/)[1]), index + 1);
     });
+    assert.deepEqual(api.parseNotation('B/S/C2; Seq 1; Init 0').pattern, []);
+    for (const initial of ['.1', '1000*0', '0*1000']) {
+        assert.throws(() => api.parseNotation(`B/S/C2; Seq 1; Init ${initial}`));
+    }
 });
 
 test('the pages and demo scripts are self-contained and their local links resolve', () => {
