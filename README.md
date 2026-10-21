@@ -10,7 +10,7 @@ Each box represents one generation; the selected rule updates all cells. **`Seq 
 
 This repository collects **oblique spaceships** found in these systems: patterns that repeat while shifting in a direction that is neither horizontal, vertical nor diagonal. Each entry provides its rules, sequence, initial pattern and a runnable browser demo.
 
-This repository records oblique spaceships discovered by [Kazuhiro Tanimoto](https://kazuhirotanimoto.com/) while studying [rule-switching cellular automata](https://kazuhirotanimoto.com/research/rule_switching_ca/). The snapshot dated October 12, 2026 contains **4,798 entries**, with complete rules, temporal sequences and initial structures.
+This repository records oblique spaceships discovered by [Kazuhiro Tanimoto](https://kazuhirotanimoto.com/) while studying [rule-switching cellular automata](https://kazuhirotanimoto.com/research/rule_switching_ca/). The snapshot dated October 21, 2026 contains **4,802 entries**, with complete rules, temporal sequences and initial structures.
 
 The list includes many spaceships that require specific initial structures, including examples that are extremely unlikely to emerge from random initial configurations. Many entries are related variants, and the collection has not yet been fully organized. An entry is a recorded rule-sequence-pattern combination; the entry count is not a count of distinct velocities or unrelated spaceship families.
 

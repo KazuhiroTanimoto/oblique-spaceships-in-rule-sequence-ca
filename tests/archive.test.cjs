@@ -12,7 +12,7 @@ const links = [...list.matchAll(/class="ca-oblique-rule-link"\s+href="([^"]+)"/g
 
 test('every archived record matches its TXT expression and supplies a complete demo', () => {
     const lines = read('oblique_list.txt').trimEnd().split(/\r?\n/);
-    assert.equal(lines.length, 4798);
+    assert.equal(lines.length, 4802);
     assert.equal(links.length, lines.length);
     assert.equal(new Set(lines).size, lines.length);
     const rows = [...list.matchAll(/<tr data-dx="(\d+)" data-dy="(\d+)">([\s\S]*?)<\/tr>/g)];
