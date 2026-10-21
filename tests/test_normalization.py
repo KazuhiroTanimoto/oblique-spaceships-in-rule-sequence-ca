@@ -23,7 +23,7 @@ class NormalizationTests(unittest.TestCase):
 
     def test_every_published_expression_is_canonical_and_idempotent(self):
         lines = (ARCHIVE / "oblique_list.txt").read_text(encoding="utf-8").splitlines()
-        self.assertEqual(len(lines), 4798)
+        self.assertEqual(len(lines), 4802)
         for number, line in enumerate(lines, 1):
             rules_text, sequence_text, _ = line.split(";")
             rules = [rule.strip() for rule in rules_text.split(",")]
